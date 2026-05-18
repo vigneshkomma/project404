@@ -12,7 +12,7 @@ class Run(Base):
     id = Column(String, primary_key=True, default=generate_uuid)
     agent_id = Column(String, ForeignKey("agents.id"))
     user_id = Column(String, ForeignKey("users.id"))
-    version_id = Column(String, ForeignKey("agent_versions.id"))
+    version_id = Column(String, ForeignKey("agent_version.id"))
 
     status = Column(String)
 

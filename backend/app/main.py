@@ -20,6 +20,7 @@ async def lifespan(app: FastAPI):
     from app.models import user, agent 
 
     Base.metadata.create_all(bind = engine)
+    print(Base.metadata.tables.keys())
     logger.info("Database connected and tables ready")
 
     yield #backend running here
