@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from jose import JWTError, jwt
 from datetime import datetime, timezone, timedelta
 import uuid
-import bcrypt  # <-- Swapped passlib for native bcrypt
+import bcrypt  
 
 from app.core.database import get_db
 from app.models.user import User

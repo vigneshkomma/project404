@@ -1,4 +1,3 @@
 .env
-backend/app/schemas/__pycache__/
-backend/app/core/__pycache__
- backend/app/routes/__pycache__
+__pycache__/
+*.py[cod]

@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 from contextlib import asynccontextmanager
+from pathlib import Path
 import logging
 
 #Importing routes
-from app.routes import auth, agents, run
+from app.routes import auth, agents, run, home
 
 logger = logging.getLogger(__name__)
 
@@ -50,6 +52,7 @@ app.add_middleware(
 app.include_router(auth.router,prefix="/auth",tags=["Auth"])
 app.include_router(agents.router,prefix="/agents",tags=["Agents"])
 app.include_router(run.router,prefix="/run",tags=["Run"])
+app.include_router(home.router, prefix="/home",tags=["Home"])
 
 #Health check
 @app.get("/")
