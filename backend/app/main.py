@@ -1,15 +1,26 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+import logging
 
 #Importing routes
 from app.routes import auth, agents, run
+
+logger = logging.getLogger(__name__)
+
 
 #Lifespan handler 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     #Startup logic - connecting to databases and other backend connections
-    print("Backend API started\n")
+    logger.info("Backend API started")
+
+    #DB init (DEV only)
+    from app.core.database import Base, engine
+    from app.models import user, agent 
+
+    Base.metadata.create_all(bind = engine)
+    logger.info("Database connected and tables ready")
 
     yield #backend running here
 
