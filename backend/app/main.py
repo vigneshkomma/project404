@@ -7,7 +7,7 @@ from pathlib import Path
 import logging
 
 #Importing routes
-from app.routes import auth, agents, run, home
+from app.routes import auth, agents, run, home, logout
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +55,7 @@ app.include_router(auth.router,prefix="/auth",tags=["Auth"])
 app.include_router(agents.router,prefix="/agents",tags=["Agents"])
 app.include_router(run.router,prefix="/run",tags=["Run"])
 app.include_router(home.router, prefix="/home",tags=["Home"])
+app.include_router(logout.router, prefix="/logout", tags=["Logout"])
 
 #Health check
 @app.get("/")
