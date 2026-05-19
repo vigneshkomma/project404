@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from contextlib import asynccontextmanager
-from pathlib import Path
+from fastapi.responses import FileResponse
 import logging
 
 #Importing routes
@@ -57,7 +57,7 @@ app.include_router(home.router, prefix="/home",tags=["Home"])
 #Health check
 @app.get("/")
 def root():
-    return {"message":"p404 API is running"}
+    return FileResponse("../frontend/index.html")
 
 
 

@@ -2,101 +2,19 @@
 <html>
 <head>
     <title>Project404</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            background: #0f172a;
-            color: white;
-            margin: 0;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        .btn {
-            display: inline-block;
-            margin: 10px;
-            padding: 12px 22px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: white;
-            background: #3b82f6;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn:hover {
-            background: #2563eb;
-        }
-
-        .signup {
-            background: #10b981;
-        }
-
-        .signup:hover {
-            background: #059669;
-        }
-    </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Project404</h1>
-        <p>API Test Frontend</p>
+    <h1>Welcome to Project404</h1>
 
-        <button class="btn signup" onclick="signup()">Sign Up</button>
-        <button class="btn" onclick="login()">Login</button>
-    </div>
+    <p>Choose an option:</p>
 
-<script>
-const API_BASE = "http://localhost:8000";
+    <a href="/auth/signup">
+        <button>Signup</button>
+    </a>
 
-async function signup() {
-    const email = prompt("Enter email");
-    const password = prompt("Enter password");
-
-    const res = await fetch(`${API_BASE}/auth/signup`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email,
-            password
-        })
-    });
-
-    const data = await res.json();
-    console.log(data);
-    alert(JSON.stringify(data));
-}
-
-async function login() {
-    const email = prompt("Enter email");
-    const password = prompt("Enter password");
-
-    const res = await fetch(`${API_BASE}/auth/login`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email,
-            password
-        })
-    });
-
-    const data = await res.json();
-    console.log(data);
-    alert(JSON.stringify(data));
-}
-</script>
+    <a href="/auth/login">
+        <button>Login</button>
+    </a>
 
 </body>
 </html>
