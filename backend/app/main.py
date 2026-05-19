@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from contextlib import asynccontextmanager
 from fastapi.responses import FileResponse
+from pathlib import Path
 import logging
 
 #Importing routes
@@ -36,7 +37,8 @@ app = FastAPI(
     title="project404-API",
     description="backend API for p404",
     version="0.0.1",
-    lifespan=lifespan
+    lifespan=lifespan,
+    redirect_slashes=False
 )
 
 #CORS
@@ -57,7 +59,8 @@ app.include_router(home.router, prefix="/home",tags=["Home"])
 #Health check
 @app.get("/")
 def root():
-    return FileResponse("../frontend/index.html")
+    BASE_DIR = Path(__file__).resolve().parent
+    return FileResponse(str(BASE_DIR / "../../frontend/index.html"))
 
 
 

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from jose import jwt
@@ -119,8 +119,12 @@ def login(
     
     token = create_access_token({"user_id": user.id})
 
-    return templates.TemplateResponse(
-        request=request,
-        name="success.html",
-        context={"message":"login successful","token":token}
+    response = RedirectResponse(url="/home", status_code=302)
+
+    response.set_cookie(
+        key = "access_token",
+        value=token,
+        httponly=True
     )
+
+    return response
